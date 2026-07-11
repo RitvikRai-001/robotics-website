@@ -1,21 +1,19 @@
 "use client"
 
-import { Suspense } from "react"
 import dynamic from "next/dynamic"
 import { motion } from "framer-motion"
 import { useAuth } from "@/lib/auth-context"
 import { useSiteContent } from "@/lib/use-site-content"
 import Link from "next/link"
-import HeroFallback from "./hero-fallback"
 import { ArrowRight } from "lucide-react"
 
 const HeroScene = dynamic(() => import("./hero-scene"), { ssr: false })
 
 const defaults = {
   tagline: "MNNIT Robotics Club",
-  heading: "We build machines that think.",
-  subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-  ctaPrimary: { text: "Get Started", href: "/events" },
+  heading: "Building Robotic\nInterfaces To\nShape The Future",
+  subheading: "From neural signals to autonomous impact.",
+  ctaPrimary: { text: "Explore our fleet", href: "/projects" },
   ctaSecondary: { text: "View Projects", href: "/projects" },
 }
 
@@ -24,37 +22,36 @@ export default function Hero() {
   const { content } = useSiteContent("hero", defaults)
   const hero = content ?? defaults
 
-  const primaryHref = user ? (hero.ctaPrimary?.href || "/events") : "/auth/signin"
+  const primaryHref = user ? (hero.ctaPrimary?.href || "/projects") : "/auth/signin"
 
   return (
-    <section className="relative min-h-screen flex items-center bg-[var(--bg)]">
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center py-24 lg:py-0">
+    <section className="relative min-h-[90vh] flex items-center bg-[var(--bg)] overflow-hidden">
+      {/* Sketchfab 3D — positioned center/right, behind text */}
+      <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-[5%]">
+        <div className="w-[450px] h-[450px] lg:w-[700px] lg:h-[700px]" role="img" aria-label="Wall-E 3D model">
+          <HeroScene />
+        </div>
+      </div>
 
-        {/* Left — copy */}
-        <div className="relative z-10 max-w-xl">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="text-sm font-medium text-[var(--accent)] mb-6"
-          >
-            {hero.tagline}
-          </motion.p>
-
+      {/* Text overlay — left aligned */}
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-8 py-32">
+        <div className="max-w-3xl">
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-[var(--fg)] mb-6"
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            className="font-display text-[clamp(2.5rem,7vw,5.5rem)] font-bold leading-[1.02] tracking-tight text-[var(--fg)]"
           >
-            {hero.heading}
+            {(hero.heading || defaults.heading).split("\n").map((line: string, i: number) => (
+              <span key={i} className="block">{line}</span>
+            ))}
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-lg text-[var(--fg-secondary)] leading-relaxed mb-10 max-w-lg"
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="mt-8 text-lg text-[var(--fg-secondary)] max-w-md"
           >
             {hero.subheading}
           </motion.p>
@@ -62,31 +59,37 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="flex items-center gap-4"
+            transition={{ delay: 0.6 }}
+            className="mt-10"
           >
             <Link
               href={primaryHref}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--accent)] text-white text-sm font-semibold hover:bg-[var(--accent-hover)] transition-colors"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--fg)] text-[var(--bg)] text-sm font-medium hover:opacity-90 transition-opacity"
             >
-              {hero.ctaPrimary?.text || "Get Started"} <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href={hero.ctaSecondary?.href || "/projects"}
-              className="text-sm font-medium text-[var(--fg-secondary)] hover:text-[var(--fg)] transition-colors"
-            >
-              {hero.ctaSecondary?.text || "View Projects"} &rarr;
+              {hero.ctaPrimary?.text || "Explore our fleet"} <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
         </div>
-
-        {/* Right — 3D */}
-        <div className="relative h-[450px] lg:h-[600px]" role="img" aria-label="3D robotic arm model">
-          <Suspense fallback={<HeroFallback />}>
-            <HeroScene />
-          </Suspense>
-        </div>
       </div>
+
+      {/* Small project showcase cards — bottom right */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+        className="hidden lg:flex absolute bottom-16 right-[5%] gap-4 z-10"
+      >
+        <div className="w-36 rounded-xl border border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-sm p-3">
+          <div className="w-full h-20 rounded-lg bg-[var(--bg-secondary)] mb-2" />
+          <p className="text-xs font-medium text-[var(--fg)]">RC-01</p>
+          <p className="text-[10px] text-[var(--fg-tertiary)] uppercase tracking-wider">Self-Driving Car</p>
+        </div>
+        <div className="w-36 rounded-xl border border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-sm p-3">
+          <div className="w-full h-20 rounded-lg bg-[var(--bg-secondary)] mb-2" />
+          <p className="text-xs font-medium text-[var(--fg)]">RB-02</p>
+          <p className="text-[10px] text-[var(--fg-tertiary)] uppercase tracking-wider">Robotic Arm</p>
+        </div>
+      </motion.div>
     </section>
   )
 }

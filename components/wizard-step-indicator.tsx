@@ -20,31 +20,26 @@ export default function WizardStepIndicator({ steps, currentStep }: Props) {
               <motion.div
                 animate={{
                   scale: isActive ? 1.1 : 1,
-                  borderColor: isActive
-                    ? "var(--accent-primary)"
-                    : isComplete
-                    ? "var(--accent-primary)"
-                    : "var(--border-subtle)",
                 }}
                 className={`w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs font-semibold transition-colors ${
                   isComplete
-                    ? "bg-[var(--accent-primary)] text-black"
+                    ? "bg-[var(--fg)] text-[var(--bg)] border-[var(--fg)]"
                     : isActive
-                    ? "bg-[var(--accent-primary)]/10 text-[var(--accent-primary)]"
-                    : "bg-[var(--bg-elevated)] text-[var(--text-dim)]"
+                    ? "bg-[var(--bg)] text-[var(--fg)] border-[var(--fg)]"
+                    : "bg-[var(--bg-secondary)] text-[var(--fg-tertiary)] border-[var(--border)]"
                 }`}
               >
                 {isComplete ? <Check className="w-4 h-4" /> : idx + 1}
               </motion.div>
-              <span className={`text-[10px] mt-2 text-center whitespace-nowrap ${
-                isActive ? "text-[var(--accent-primary)]" : "text-[var(--text-dim)]"
+              <span className={`text-[10px] mt-2 text-center whitespace-nowrap uppercase tracking-wider font-medium ${
+                isActive ? "text-[var(--fg)]" : "text-[var(--fg-tertiary)]"
               }`}>
                 {label}
               </span>
             </div>
             {idx < steps.length - 1 && (
               <div className={`flex-1 h-px mx-2 mt-[-16px] ${
-                idx < currentStep ? "bg-[var(--accent-primary)]" : "bg-[var(--border-subtle)]"
+                idx < currentStep ? "bg-[var(--fg)]" : "bg-[var(--border)]"
               }`} />
             )}
           </div>

@@ -11,22 +11,15 @@ import Footer from "@/components/footer"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[var(--bg-deep)]">
+    <main className="min-h-screen bg-[var(--bg)]">
       <Navbar />
       <Hero />
-      <div className="section-divider" />
       <WhoAreWe />
-      <div className="section-divider" />
       <Purpose />
-      <div className="section-divider" />
       <TechStack />
-      <div className="section-divider" />
       <BentoProjects />
-      <div className="section-divider" />
       <CarTimeline />
-      <div className="section-divider" />
       <Achievements />
-      <div className="section-divider" />
       <FAQ />
       <Footer />
     </main>

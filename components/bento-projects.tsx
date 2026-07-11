@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import ProjectHudOverlay from "./project-hud-overlay"
 
 interface Project {
   _id: string
@@ -46,11 +45,11 @@ export default function BentoProjects() {
 
   if (isLoading) {
     return (
-      <section className="py-28 px-4 bg-[var(--bg-deep)]">
+      <section id="projects" className="py-24 lg:py-32 px-6 lg:px-8 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[200px]">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className={`bento-card animate-pulse ${spanPatterns[i] || ""}`} />
+              <div key={i} className={`rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)] animate-pulse ${spanPatterns[i] || ""}`} />
             ))}
           </div>
         </div>
@@ -61,41 +60,38 @@ export default function BentoProjects() {
   if (projects.length === 0) return null
 
   return (
-    <section className="py-28 px-4 bg-[var(--bg-deep)] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section id="projects" className="py-24 lg:py-32 px-6 lg:px-8 scroll-mt-20">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
+          className="mb-14"
         >
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-secondary)]/10 border border-[var(--accent-secondary)]/20 mb-4">
-              <span className="w-1.5 h-1.5 bg-[var(--accent-secondary)] rounded-full animate-pulse" />
-              <span className="text-xs text-[var(--accent-secondary)] tracking-widest uppercase">Portfolio</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)]">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-primary)] to-orange-400">Projects</span>
-            </h2>
-          </div>
-
-          {/* Category filters */}
-          <div className="flex flex-wrap gap-2">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
-                  filter === cat
-                    ? "bg-[var(--accent-primary)] text-black"
-                    : "bg-[var(--bg-surface)] text-[var(--text-muted)] border border-[var(--border-subtle)] hover:border-[var(--border-hover)]"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+          <h2 className="font-display text-4xl md:text-6xl font-bold text-[var(--fg)] tracking-tight leading-[1.05] mb-4">
+            Active Fleet<br />Deployments.
+          </h2>
+          <p className="text-[var(--fg-secondary)] text-lg max-w-2xl">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Each unit is precision-engineered for high-stakes environments.
+          </p>
         </motion.div>
+
+        {/* Category filters */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                filter === cat
+                  ? "bg-[var(--fg)] text-[var(--bg)]"
+                  : "bg-[var(--bg-secondary)] text-[var(--fg-secondary)] border border-[var(--border)] hover:border-[var(--border-hover)]"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
 
         <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[220px]">
           <AnimatePresence mode="popLayout">
@@ -103,41 +99,54 @@ export default function BentoProjects() {
               <motion.div
                 key={project._id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ delay: idx * 0.05 }}
-                className={`group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent-primary)]/30 transition-all duration-300 cursor-pointer ${spanPatterns[idx % spanPatterns.length]}`}
+                className={`group relative overflow-hidden rounded-2xl border border-[var(--border)] hover:border-[var(--border-hover)] transition-all cursor-pointer ${spanPatterns[idx % spanPatterns.length]}`}
               >
-                {project.image && (
+                {project.image ? (
                   <div className="absolute inset-0 z-0">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-500"
+                      className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   </div>
+                ) : (
+                  <div className="absolute inset-0 bg-[var(--bg-secondary)]" />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-deep)] via-[var(--bg-deep)]/60 to-transparent z-[1]" />
 
-                <div className="relative z-10 h-full flex flex-col justify-end p-5">
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors">
+                <div className="relative z-10 h-full flex flex-col justify-between p-5">
+                  <div className="flex items-center gap-2">
+                    {project.category && (
+                      <span className="px-3 py-1 rounded-full bg-white/90 text-[10px] font-semibold text-black uppercase tracking-wider backdrop-blur-sm">
+                        {project.category}
+                      </span>
+                    )}
+                    {project.status && (
+                      <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 text-[10px] font-medium text-black backdrop-blur-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        {project.status}
+                      </span>
+                    )}
+                  </div>
+
+                  <h3 className={`text-xl font-display font-bold ${project.image ? "text-white" : "text-[var(--fg)]"}`}>
                     {project.title}
                   </h3>
-                  <p className="text-xs text-[var(--text-muted)] mt-1 line-clamp-2">{project.description}</p>
                 </div>
-
-                <ProjectHudOverlay project={project} />
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-12 text-center">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl glass text-sm font-medium text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border)] text-sm font-medium text-[var(--fg)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-secondary)] transition-all"
           >
             View All Projects
           </Link>

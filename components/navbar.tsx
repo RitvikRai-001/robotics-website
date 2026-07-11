@@ -11,9 +11,9 @@ import ThemeToggle from "./theme-toggle"
 const defaultNav = {
   logo: { text: "MNNIT Robotics" },
   links: [
-    { name: "About", href: "#who-are-we" },
-    { name: "Projects", href: "/projects" },
-    { name: "Events", href: "/events" },
+    { name: "Technology", href: "#tech-stack" },
+    { name: "Fleet", href: "#projects" },
+    { name: "Updates", href: "#updates" },
   ],
 }
 
@@ -31,34 +31,37 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[var(--bg)]/80 backdrop-blur-xl border-b border-[var(--border)] shadow-[var(--shadow-sm)]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-lg font-display font-bold text-[var(--fg)]">
+    <nav className="sticky top-0 z-50 px-4 pt-3">
+      <div
+        className={`max-w-6xl mx-auto rounded-full transition-all duration-500 ${
+          scrolled
+            ? "bg-[var(--bg)]/90 backdrop-blur-2xl shadow-[var(--shadow-md)] border border-[var(--border)]"
+            : "bg-[var(--bg)]/60 backdrop-blur-xl border border-[var(--border)]/50"
+        }`}
+      >
+        <div className="flex items-center justify-between h-14 px-6">
+          {/* Logo */}
+          <Link href="/" className="font-display font-bold text-[var(--fg)] text-lg tracking-tight shrink-0">
             {nav.logo?.text || "MNNIT Robotics"}
           </Link>
 
-          {/* Desktop */}
-          <div className="hidden md:flex items-center gap-8">
-            <div className="flex items-center gap-6">
+          {/* Center nav links — pill group */}
+          <div className="hidden md:flex items-center">
+            <div className="flex items-center gap-1 rounded-full bg-[var(--bg-secondary)]/80 px-1.5 py-1">
               {(nav.links ?? []).map((link: any) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg)] transition-colors"
+                  className="px-4 py-1.5 rounded-full text-sm text-[var(--fg-secondary)] hover:text-[var(--fg)] hover:bg-[var(--bg-tertiary)] transition-all"
                 >
                   {link.name}
                 </Link>
               ))}
             </div>
+          </div>
 
-            <div className="h-5 w-px bg-[var(--border)]" />
+          {/* Right side */}
+          <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
 
             {user ? (
@@ -69,15 +72,15 @@ export default function Navbar() {
                 <UserAvatar />
               </div>
             ) : (
-              <div className="flex items-center gap-3">
-                <Link href="/auth/signin" className="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg)] transition-colors">
+              <div className="flex items-center gap-2">
+                <Link href="/auth/signin" className="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg)] transition-colors px-3">
                   Log in
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="px-4 py-2 rounded-lg bg-[var(--accent)] text-white text-sm font-medium hover:bg-[var(--accent-hover)] transition-colors"
+                  className="px-5 py-2 rounded-full bg-[var(--fg)] text-[var(--bg)] text-sm font-medium hover:opacity-90 transition-opacity"
                 >
-                  Sign up
+                  Join Us
                 </Link>
               </div>
             )}
@@ -91,8 +94,8 @@ export default function Navbar() {
               className="w-9 h-9 flex flex-col justify-center items-center gap-1.5"
               aria-label="Menu"
             >
-              <span className={`w-5 h-[1.5px] bg-[var(--fg)] transition-all ${isOpen ? "rotate-45 translate-y-[4px]" : ""}`} />
-              <span className={`w-5 h-[1.5px] bg-[var(--fg)] transition-all ${isOpen ? "-rotate-45 -translate-y-[3px]" : ""}`} />
+              <span className={`w-5 h-[1.5px] bg-[var(--fg)] transition-all duration-300 ${isOpen ? "rotate-45 translate-y-[4px]" : ""}`} />
+              <span className={`w-5 h-[1.5px] bg-[var(--fg)] transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-[3px]" : ""}`} />
             </button>
           </div>
         </div>
@@ -102,18 +105,19 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden bg-[var(--bg)] border-t border-[var(--border)]"
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden mt-2 mx-2 rounded-2xl bg-[var(--bg)] border border-[var(--border)] shadow-[var(--shadow-lg)] overflow-hidden"
           >
-            <div className="px-6 py-4 space-y-1">
+            <div className="px-5 py-4 space-y-1">
               {(nav.links ?? []).map((link: any) => (
                 <Link
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block py-2 text-[var(--fg-secondary)] hover:text-[var(--fg)]"
+                  className="block py-2.5 text-[var(--fg-secondary)] hover:text-[var(--fg)] text-sm transition-colors"
                 >
                   {link.name}
                 </Link>
@@ -122,21 +126,21 @@ export default function Navbar() {
               {user ? (
                 <button
                   onClick={() => { signOut(); setIsOpen(false) }}
-                  className="block py-2 text-[var(--fg-secondary)]"
+                  className="block py-2 text-[var(--fg-secondary)] text-sm"
                 >
                   Sign out
                 </button>
               ) : (
-                <div className="flex gap-3 pt-1">
+                <div className="flex items-center gap-3 pt-1">
                   <Link href="/auth/signin" onClick={() => setIsOpen(false)} className="text-sm text-[var(--fg-secondary)]">
                     Log in
                   </Link>
                   <Link
                     href="/auth/signup"
                     onClick={() => setIsOpen(false)}
-                    className="px-4 py-2 rounded-lg bg-[var(--accent)] text-white text-sm font-medium"
+                    className="px-5 py-2 rounded-full bg-[var(--fg)] text-[var(--bg)] text-sm font-medium"
                   >
-                    Sign up
+                    Join Us
                   </Link>
                 </div>
               )}

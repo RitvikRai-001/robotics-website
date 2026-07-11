@@ -5,8 +5,7 @@ import { ArrowUpRight } from "lucide-react"
 import { useSiteContent } from "@/lib/use-site-content"
 
 const defaults = {
-  heading: "In the",
-  headingAccent: "press",
+  heading: "In the press",
   items: [
     { title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod", source: "Times of India", date: "Dec 2019", category: "Automotive" },
     { title: "Suspendisse varius enim in eros elementum tristique duis cursus", source: "Dainik Bhaskar", date: "Aug 2021", category: "Biomedical" },
@@ -25,12 +24,12 @@ export default function Achievements() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-display text-4xl md:text-5xl font-bold text-[var(--fg)] tracking-tight mb-12"
+          className="font-display text-4xl md:text-5xl font-bold text-[var(--fg)] tracking-tight mb-14"
         >
-          {data.heading} <span className="text-[var(--accent)]">{data.headingAccent}</span>
+          {data.heading}
         </motion.h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-4">
           {(data.items ?? []).map((item: any, idx: number) => (
             <motion.article
               key={idx}
@@ -38,20 +37,20 @@ export default function Achievements() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="group p-6 rounded-2xl border border-[var(--border)] hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-md)] transition-all flex flex-col"
+              className="group p-6 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--border-hover)] transition-all flex flex-col"
             >
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-medium text-[var(--accent)]">{item.source}</span>
-                <span className="text-xs text-[var(--fg-tertiary)] px-2 py-0.5 rounded-full bg-[var(--bg-secondary)]">
+                <span className="text-xs font-semibold text-[var(--fg)] uppercase tracking-wider">{item.source}</span>
+                <span className="text-[10px] text-[var(--fg-tertiary)] px-2.5 py-1 rounded-full border border-[var(--border)]">
                   {item.category}
                 </span>
               </div>
-              <h3 className="text-[var(--fg)] font-medium leading-snug mb-6 group-hover:text-[var(--accent)] transition-colors">
+              <h3 className="text-[var(--fg)] font-medium leading-snug mb-6 group-hover:text-[var(--fg)] transition-colors">
                 {item.title}
               </h3>
               <div className="mt-auto flex items-center justify-between pt-4 border-t border-[var(--border)]">
                 <span className="text-xs text-[var(--fg-tertiary)]">{item.date}</span>
-                <ArrowUpRight className="w-4 h-4 text-[var(--fg-tertiary)] group-hover:text-[var(--accent)] transition-colors" />
+                <ArrowUpRight className="w-4 h-4 text-[var(--fg-tertiary)] group-hover:text-[var(--fg)] transition-colors" />
               </div>
             </motion.article>
           ))}

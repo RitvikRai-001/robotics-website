@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-sm font-medium text-[var(--fg)] mb-4">Links</p>
+            <p className="text-sm font-medium text-[var(--fg)] mb-4 uppercase tracking-wider">Links</p>
             <ul className="space-y-2">
               {(data.navLinks ?? []).map((link: any) => (
                 <li key={link.label}>
@@ -59,13 +59,20 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-sm font-medium text-[var(--fg)] mb-4">Location</p>
+            <p className="text-sm font-medium text-[var(--fg)] mb-4 uppercase tracking-wider">Location</p>
             <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">{data.address}</p>
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-[var(--border)] text-xs text-[var(--fg-tertiary)]">
-          &copy; {new Date().getFullYear()} MNNIT Robotics Club
+        <div className="mt-16 pt-6 border-t border-[var(--border)] flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-[var(--fg-tertiary)]">
+            &copy; {new Date().getFullYear()} MNNIT Robotics Club. Precision in motion.
+          </p>
+          <div className="flex items-center gap-6 text-xs text-[var(--fg-tertiary)]">
+            <a href="#" className="hover:text-[var(--fg)] transition-colors uppercase tracking-wider">Legal</a>
+            <a href="#" className="hover:text-[var(--fg)] transition-colors uppercase tracking-wider">Privacy</a>
+            <a href="#" className="hover:text-[var(--fg)] transition-colors uppercase tracking-wider">Contact</a>
+          </div>
         </div>
       </div>
     </footer>

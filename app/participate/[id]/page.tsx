@@ -35,17 +35,17 @@ export default function ParticipatePage({ params }: { params: Promise<{ id: stri
 
   if (isChecking) {
     return (
-      <div className="min-h-screen bg-[var(--bg-deep)] flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--bg)] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-8 h-8 text-[var(--accent-secondary)] animate-spin" />
-          <p className="text-[var(--text-dim)] text-sm">Checking participation status...</p>
+          <Loader2 className="w-8 h-8 text-[var(--fg-tertiary)] animate-spin" />
+          <p className="text-[var(--fg-tertiary)] text-sm">Checking participation status...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <main className="min-h-screen bg-[var(--bg-deep)] text-[var(--text-primary)]">
+    <main className="min-h-screen bg-[var(--bg)]">
       <Navbar />
       <div className="pt-28 pb-20 px-4">
         <motion.div
@@ -53,10 +53,10 @@ export default function ParticipatePage({ params }: { params: Promise<{ id: stri
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-10"
         >
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">
-            Competition <span className="text-[var(--accent-primary)]">Registration</span>
+          <h1 className="font-display text-3xl md:text-4xl font-bold text-[var(--fg)] mb-2">
+            Competition Registration
           </h1>
-          <p className="text-[var(--text-muted)] text-sm">Join or create a team to participate</p>
+          <p className="text-[var(--fg-secondary)] text-sm">Join or create a team to participate</p>
         </motion.div>
 
         <RegistrationWizard competitionId={competitionId} />
