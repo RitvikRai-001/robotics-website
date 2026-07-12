@@ -6,8 +6,8 @@ import { useSiteContent } from "@/lib/use-site-content"
 const defaults = {
   heading: "About the club",
   description: [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Exploring the current operational matrix of our autonomous systems. Each unit is precision-engineered for high-stakes environments, reflecting our commitment to technical purity and functional supremacy.",
-    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+    "MNNIT Robotics Club is a student-led technical community at Motilal Nehru National Institute of Technology, Allahabad. We design, build, and compete with robots — from autonomous vehicles to drones, manipulators, and embedded systems.",
+    "Our work spans mechanical design, electronics, computer vision, and software. Members gain hands-on experience through projects, workshops, and national-level competitions.",
   ],
   stats: [
     { label: "Founded", value: "2016" },

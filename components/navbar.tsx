@@ -11,9 +11,10 @@ import ThemeToggle from "./theme-toggle"
 const defaultNav = {
   logo: { text: "MNNIT Robotics" },
   links: [
-    { name: "Technology", href: "#tech-stack" },
-    { name: "Fleet", href: "#projects" },
-    { name: "Updates", href: "#updates" },
+    { name: "Projects", href: "/projects" },
+    { name: "Events", href: "/events" },
+    { name: "SDC", href: "/sdc" },
+    { name: "Team", href: "/team" },
   ],
 }
 

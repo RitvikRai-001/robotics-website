@@ -9,10 +9,10 @@ const iconMap: Record<string, any> = { Users, Lightbulb, Rocket, Zap }
 const defaults = {
   heading: "What we do",
   cards: [
-    { title: "Collaborate", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.", icon: "Users" },
-    { title: "Build", description: "Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.", icon: "Lightbulb" },
-    { title: "Compete", description: "Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.", icon: "Rocket" },
-    { title: "Teach", description: "Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis.", icon: "Zap" },
+    { title: "Collaborate", description: "Work in cross-functional teams of mechanical, electronics, and software engineers to tackle real engineering challenges.", icon: "Users" },
+    { title: "Build", description: "Design and fabricate robots from scratch — CAD, PCB design, 3D printing, embedded firmware, and full-stack software.", icon: "Lightbulb" },
+    { title: "Compete", description: "Represent MNNIT at national and international robotics competitions including IGVC, Robocon, and e-Yantra.", icon: "Rocket" },
+    { title: "Teach", description: "Conduct workshops, bootcamps, and mentorship programs to help new members build foundational robotics skills.", icon: "Zap" },
   ],
 }
 

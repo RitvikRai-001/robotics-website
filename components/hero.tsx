@@ -26,9 +26,9 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[90vh] flex items-center bg-[var(--bg)] overflow-hidden">
-      {/* Sketchfab 3D — positioned center/right, behind text */}
-      <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-[5%]">
-        <div className="w-[450px] h-[450px] lg:w-[700px] lg:h-[700px]" role="img" aria-label="Wall-E 3D model">
+      {/* 3D Robot — positioned lower-right */}
+      <div className="absolute inset-0 flex items-end justify-center lg:items-center lg:justify-end lg:pr-[5%] pb-8 lg:pb-0 lg:pt-24">
+        <div className="w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[700px] lg:h-[700px]" role="img" aria-label="3D Robot">
           <HeroScene />
         </div>
       </div>
@@ -72,24 +72,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Small project showcase cards — bottom right */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-        className="hidden lg:flex absolute bottom-16 right-[5%] gap-4 z-10"
-      >
-        <div className="w-36 rounded-xl border border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-sm p-3">
-          <div className="w-full h-20 rounded-lg bg-[var(--bg-secondary)] mb-2" />
-          <p className="text-xs font-medium text-[var(--fg)]">RC-01</p>
-          <p className="text-[10px] text-[var(--fg-tertiary)] uppercase tracking-wider">Self-Driving Car</p>
-        </div>
-        <div className="w-36 rounded-xl border border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-sm p-3">
-          <div className="w-full h-20 rounded-lg bg-[var(--bg-secondary)] mb-2" />
-          <p className="text-xs font-medium text-[var(--fg)]">RB-02</p>
-          <p className="text-[10px] text-[var(--fg-tertiary)] uppercase tracking-wider">Robotic Arm</p>
-        </div>
-      </motion.div>
     </section>
   )
 }

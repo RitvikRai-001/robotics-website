@@ -35,10 +35,10 @@ export default function ProjectsPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="font-display text-5xl md:text-7xl font-bold text-[var(--fg)] tracking-tight leading-[1.05] mb-4">
-              Active Fleet<br />Deployments.
+              Our<br />Projects.
             </h1>
             <p className="text-lg text-[var(--fg-secondary)] max-w-2xl">
-              Exploring the current operational matrix of our autonomous systems. Each unit is precision-engineered for high-stakes environments.
+              Browse our portfolio of robotics builds — from self-driving cars to drones and manipulators. Every project is a hands-on lab for engineering skills.
             </p>
           </motion.div>
         </div>
@@ -130,9 +130,41 @@ export default function ProjectsPage() {
           )}
 
           {!loading && filteredProjects.length === 0 && (
-            <div className="text-center py-20 border border-dashed border-[var(--border)] rounded-2xl">
-              <h3 className="text-xl font-display font-bold text-[var(--fg)] mb-2">No records found</h3>
-              <p className="text-[var(--fg-secondary)]">Try adjusting your filter parameters.</p>
+            <div className="space-y-8">
+              {selectedCategory !== "All" ? (
+                <div className="text-center py-20 border border-dashed border-[var(--border)] rounded-2xl">
+                  <h3 className="text-xl font-display font-bold text-[var(--fg)] mb-2">No {selectedCategory} projects</h3>
+                  <p className="text-[var(--fg-secondary)]">Try selecting a different category.</p>
+                </div>
+              ) : (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {[
+                    { title: "Self-Driving Car", category: "Competition", desc: "Autonomous vehicle with LiDAR, stereo vision, and path planning — our flagship SDC project." },
+                    { title: "6-DOF Robotic Arm", category: "Innovation", desc: "Desktop manipulator with inverse kinematics and computer vision for pick-and-place tasks." },
+                    { title: "Swarm Drones", category: "Research", desc: "Multi-agent drone swarm with decentralized coordination for search-and-rescue scenarios." },
+                    { title: "Robocon Bot", category: "Competition", desc: "Annual competition robot designed for the ABU Robocon challenge theme." },
+                    { title: "SLAM Navigator", category: "Research", desc: "Indoor mapping robot using LiDAR SLAM and autonomous navigation in unknown environments." },
+                    { title: "Agri-Bot", category: "Innovation", desc: "Autonomous crop monitoring robot with soil sensors and weed detection using edge AI." },
+                  ].map((project, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: idx * 0.06 }}
+                      className="rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] overflow-hidden"
+                    >
+                      <div className="h-40 bg-[var(--bg-tertiary)] flex items-center justify-center">
+                        <span className="text-[var(--fg-tertiary)] text-sm font-display">{project.title}</span>
+                      </div>
+                      <div className="p-5">
+                        <span className="text-[10px] uppercase tracking-wider text-[var(--fg-tertiary)] font-medium">{project.category}</span>
+                        <h3 className="font-display text-lg font-bold text-[var(--fg)] mt-1 mb-2">{project.title}</h3>
+                        <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">{project.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>

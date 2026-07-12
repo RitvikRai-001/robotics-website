@@ -37,10 +37,54 @@ export default function EventsPage() {
     return (
       <main className="min-h-screen bg-[var(--bg)]">
         <Navbar />
-        <div className="pt-32 text-center">
-          <h1 className="font-display text-2xl font-bold text-[var(--fg)] mb-2">No Events Found</h1>
-          <p className="text-[var(--fg-secondary)]">Check back later for upcoming events.</p>
-        </div>
+        <section className="pt-32 pb-16 px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+              <p className="text-xs font-semibold text-[var(--fg-secondary)] uppercase tracking-widest mb-4">Events</p>
+              <h1 className="font-display text-5xl md:text-7xl font-bold text-[var(--fg)] tracking-tight leading-[1.05] mb-6">
+                Our<br />Events.
+              </h1>
+              <p className="text-lg text-[var(--fg-secondary)] max-w-2xl">
+                Workshops, hackathons, and inter-college competitions — all designed to push your skills and build things that matter.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-16 px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-4 mb-16">
+              {[
+                { title: "Robocon Qualifiers", desc: "Our annual flagship — design, build, and compete at the national level.", date: "Every February" },
+                { title: "Build Weekends", desc: "48-hour sprint builds where teams prototype a working robot from scratch.", date: "Monthly" },
+                { title: "Tech Talks", desc: "Guest lectures and member presentations on cutting-edge robotics research.", date: "Bi-weekly" },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + i * 0.1 }}
+                  className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)]"
+                >
+                  <p className="text-[10px] text-[var(--fg-tertiary)] uppercase tracking-wider mb-3">{item.date}</p>
+                  <h3 className="font-display text-lg font-bold text-[var(--fg)] mb-2">{item.title}</h3>
+                  <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="text-center py-16 border border-dashed border-[var(--border)] rounded-2xl"
+            >
+              <p className="text-[var(--fg-tertiary)] text-sm mb-1">No live events right now</p>
+              <p className="text-[var(--fg-secondary)] text-sm">New events are announced at the start of each semester. Stay tuned.</p>
+            </motion.div>
+          </div>
+        </section>
+
         <Footer />
       </main>
     )

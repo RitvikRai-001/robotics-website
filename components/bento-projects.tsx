@@ -69,10 +69,10 @@ export default function BentoProjects() {
           className="mb-14"
         >
           <h2 className="font-display text-4xl md:text-6xl font-bold text-[var(--fg)] tracking-tight leading-[1.05] mb-4">
-            Active Fleet<br />Deployments.
+            Featured<br />Projects.
           </h2>
           <p className="text-[var(--fg-secondary)] text-lg max-w-2xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Each unit is precision-engineered for high-stakes environments.
+            A snapshot of our ongoing builds — from autonomous vehicles to industrial manipulators. Each project is an open lab for learning.
           </p>
         </motion.div>
 

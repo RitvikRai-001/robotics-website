@@ -7,7 +7,7 @@ const iconMap: Record<string, any> = { Instagram, Linkedin, Mail }
 
 const defaults = {
   brandName: "MNNIT Robotics",
-  brandDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
+  brandDescription: "A student-led technical community at MNNIT Allahabad building autonomous systems, competing nationally, and pushing the frontier of applied robotics.",
   address: "Student Activity Centre, MNNIT Allahabad, Prayagraj",
   socialLinks: [
     { platform: "Instagram", url: "https://www.instagram.com/roboticsclubmnnit", icon: "Instagram" },
@@ -15,9 +15,10 @@ const defaults = {
     { platform: "Email", url: "mailto:roboticsclub@mnnit.ac.in", icon: "Mail" },
   ],
   navLinks: [
-    { label: "About", href: "#who-are-we" },
+    { label: "About", href: "/#who-are-we" },
     { label: "Projects", href: "/projects" },
     { label: "Events", href: "/events" },
+    { label: "SDC", href: "/sdc" },
     { label: "Team", href: "/team" },
   ],
 }
@@ -68,11 +69,7 @@ export default function Footer() {
           <p className="text-xs text-[var(--fg-tertiary)]">
             &copy; {new Date().getFullYear()} MNNIT Robotics Club. Precision in motion.
           </p>
-          <div className="flex items-center gap-6 text-xs text-[var(--fg-tertiary)]">
-            <a href="#" className="hover:text-[var(--fg)] transition-colors uppercase tracking-wider">Legal</a>
-            <a href="#" className="hover:text-[var(--fg)] transition-colors uppercase tracking-wider">Privacy</a>
-            <a href="#" className="hover:text-[var(--fg)] transition-colors uppercase tracking-wider">Contact</a>
-          </div>
+
         </div>
       </div>
     </footer>

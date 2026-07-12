@@ -8,10 +8,12 @@ import { useSiteContent } from "@/lib/use-site-content"
 const defaults = {
   heading: "Frequently asked questions",
   items: [
-    { question: "Do I need prior coding experience?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
-    { question: "Does the club provide components?", answer: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
-    { question: "Can students from any branch join?", answer: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
-    { question: "How do I participate in competitions?", answer: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
+    { question: "Do I need prior coding experience?", answer: "Not at all. We welcome students from all skill levels. Our onboarding program covers everything from basic electronics to ROS 2 — you'll be contributing to real projects within weeks. Many of our strongest members started with zero robotics experience." },
+    { question: "Does the club provide components?", answer: "Yes. The club maintains a well-stocked inventory of microcontrollers, sensors, motors, 3D-printed parts, and development boards. For competition projects, we provide all materials. Members can also request components for personal projects through our resource allocation system." },
+    { question: "Can students from any branch join?", answer: "Absolutely. Robotics is inherently multidisciplinary — we need mechanical engineers for chassis design, CS students for software, ECE for circuits, and even civil/chemical engineers have contributed to specialized projects. Every branch brings a unique perspective." },
+    { question: "How do I participate in competitions?", answer: "Sign up on this website and join any active competition from the Events page. Teams are formed based on interest and skill mix. We hold internal selection rounds for national-level competitions like Robocon, and run workshops to prepare participants." },
+    { question: "What is the time commitment?", answer: "Most members spend 6–8 hours per week on club activities — a mix of workshops, build sessions, and independent project work. During competition season the pace picks up, but we're flexible with academic schedules." },
+    { question: "How is the club structured?", answer: "We have five technical verticals — Software, Electronics, Mechanical, Computer Vision, and CAD & Fabrication — each led by a team lead. The club is coordinated by a President, Vice President, and Technical Head, with guidance from two faculty advisors." },
   ],
 }
 

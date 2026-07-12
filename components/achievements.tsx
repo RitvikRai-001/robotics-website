@@ -7,9 +7,9 @@ import { useSiteContent } from "@/lib/use-site-content"
 const defaults = {
   heading: "In the press",
   items: [
-    { title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod", source: "Times of India", date: "Dec 2019", category: "Automotive" },
-    { title: "Suspendisse varius enim in eros elementum tristique duis cursus", source: "Dainik Bhaskar", date: "Aug 2021", category: "Biomedical" },
-    { title: "Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet nunc", source: "Jagran News", date: "Feb 2023", category: "Defense" },
+    { title: "MNNIT students build self-driving car prototype, demonstrate autonomous navigation on campus", source: "Times of India", date: "Dec 2019", category: "Automotive" },
+    { title: "Robotics Club wins top honors at national e-Yantra competition hosted by IIT Bombay", source: "Dainik Bhaskar", date: "Aug 2021", category: "Competition" },
+    { title: "Student team develops low-cost robotic arm for agricultural applications in rural India", source: "Jagran News", date: "Feb 2023", category: "Innovation" },
   ],
 }
 
